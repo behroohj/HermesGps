@@ -1,5 +1,6 @@
 package com.hermes.gps;
 
+import android.content.ClipData;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,8 @@ public class MainPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
+    View itm;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,7 @@ public class MainPage extends AppCompatActivity
         });
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
+itm = (View) findViewById(R.id.nav_gallery);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
