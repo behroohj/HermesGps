@@ -15,36 +15,35 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import cz.msebera.android.httpclient.Header;
+
 public class MainPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
     DrawerLayout drawer;
     View itm;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
-
+        //SMSUtils.sendSMS(G.context, phoneNumber, message);
+        //simcard 2 ham beshe
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-itm = (View) findViewById(R.id.nav_gallery);
-
+        itm = (View) findViewById(R.id.nav_gallery);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
     @Override
     public void onBackPressed() {
 
@@ -54,7 +53,6 @@ itm = (View) findViewById(R.id.nav_gallery);
             super.onBackPressed();
         }
     }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
         if ( keyCode == KeyEvent.KEYCODE_MENU ) {
@@ -70,7 +68,6 @@ itm = (View) findViewById(R.id.nav_gallery);
         // let the system handle all other key events
         return super.onKeyDown(keyCode, event);
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -85,7 +82,6 @@ itm = (View) findViewById(R.id.nav_gallery);
 
         return super.onOptionsItemSelected(item);
     }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -109,5 +105,27 @@ itm = (View) findViewById(R.id.nav_gallery);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.END);
         return true;
+    }
+    public  void webService(String address)
+    {
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(address, new AsyncHttpResponseHandler() {
+            @Override
+            public void onStart() {
+                // called before request is started
+            }
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                // called when response HTTP status is "200 OK"
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+            }
+            @Override
+            public void onRetry(int retryNo) {
+                // called when request is retried
+            }
+        });
     }
 }
