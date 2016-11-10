@@ -60,6 +60,22 @@
         <activity
             android:name=".TrackingPage"
             android:label="@string/title_activity_tracking_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TimePicker"
+            android:label="@string/title_activity_time_picker"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CarControl"
+            android:label="@string/title_activity_car_control"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Setting"
+            android:label="@string/title_activity_setting"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Alerts"
+            android:label="@string/title_activity_alerts"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

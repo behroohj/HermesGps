@@ -22,4 +22,8 @@
     </string>
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="title_activity_tracking_page">TrackingPage</string>
+    <string name="title_activity_time_picker">TimePicker</string>
+    <string name="title_activity_car_control">CarControl</string>
+    <string name="title_activity_setting">Setting</string>
+    <string name="title_activity_alerts">Alerts</string>
 </resources>
