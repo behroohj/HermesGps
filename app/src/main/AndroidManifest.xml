@@ -76,6 +76,10 @@
         <activity
             android:name=".Alerts"
             android:label="@string/title_activity_alerts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CarSelected"
+            android:label="@string/title_activity_car_selected"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

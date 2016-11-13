@@ -24,26 +24,19 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical" >
 
-                <LinearLayout
-                    android:layout_weight=".5"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp">
-
-                    <TableLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
 
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" >
 
                             <TextView
-                                android:text="TextView"
-                                android:layout_width="wrap_content"
+                                android:text="هشدار سرعت غیر مجاز"
+                                android:layout_width="match_parent"
+                                android:layout_gravity="center"
+                                android:gravity="center"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/textView7" />
                         </TableRow>
@@ -53,10 +46,11 @@
                             android:layout_height="match_parent" >
 
                             <EditText
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="textPersonName"
                                 android:text="Name"
+                                android:hint="سرعت مورد نطر"
                                 android:ems="10"
                                 android:id="@+id/editText" />
                         </TableRow>
@@ -66,51 +60,119 @@
                             android:layout_height="match_parent" >
 
                             <Button
-                                android:text="Button"
+                                android:text="لغو"
                                 android:layout_width="0dp"
                                 android:layout_weight=".5"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/button11" />
 
                             <Button
-                                android:text="Button"
+                                android:text="ارسال"
                                 android:layout_width="0dp"
                                 android:layout_weight=".5"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/button4" />
                         </TableRow>
 
-                    </TableLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_weight=".5"
-                    android:orientation="vertical"
+                <TableRow
+                    android:layout_marginTop="50dp"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp">
+                    android:layout_height="match_parent" >
 
-
-                    <TableRow
+                    <TextView
+                        android:text="هشدار امنیتی"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView8" />
+                </TableRow>
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                    <Button
+                        android:text="غیر فعال"
+                        android:layout_width="0dp"
+                        android:layout_weight=".5"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button13" />
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                    <Button
+                        android:text="فعال"
+                        android:layout_width="0dp"
+                        android:layout_weight=".5"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button12" />
+                </TableRow>
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
+                <TableRow
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_gravity="right"
+                        android:gravity="right"
+                        android:text="فقط یکبار"
+                        android:layout_width="0dp"
+                        android:layout_weight=".9"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView9" />
+
+
+                    <CheckBox
+                        android:text=""
+                        android:layout_width="0dp"
+                        android:layout_weight=".1"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBox10" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:text="جواب با SMS"
+                        android:layout_width="0dp"
+                        android:layout_weight=".9"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView10" />
+
+
+                    <CheckBox
+                        android:text=""
+                        android:layout_width="0dp"
+                        android:layout_weight=".1"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBox2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:text="جواب با زنگ"
+                        android:layout_width="0dp"
+                        android:layout_weight=".9"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView11" />
+
+                    <CheckBox
+                        android:text=""
+                        android:layout_width="0dp"
+                        android:layout_weight=".1"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBox3" />
+
+                </TableRow>
+
+
+
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
