@@ -20,7 +20,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by imanbahmani on 9/24/16 AD.
  */
 public class G {
-    public static  Context context;
+    public static Context context;
     public static ContentResolver contentResolver;
     public static Context getContext() {
         return context;

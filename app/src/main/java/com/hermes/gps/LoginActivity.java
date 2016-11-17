@@ -3,6 +3,7 @@ package com.hermes.gps;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -59,7 +60,7 @@ public class LoginActivity extends AppCompatActivity{
                 }
                 else
                 {
-                    webServiceLogin("http://www.x.com",email.getText().toString(),password.getText().toString(),G.get_unique_id(G.context),view);
+                    webServiceLogin("http://gpshermes.com/rest/login?password="+password.getText().toString()+"&username="+email.getText().toString()+" ",email.getText().toString(),password.getText().toString(),"",view);
                 }
             }
         });
@@ -79,6 +80,8 @@ public class LoginActivity extends AppCompatActivity{
                 //if is ok login we can save Shareprefrences
                 // define a boolian Login
                 Snackbar.make(view, "ورود با موفقیت انجام شد", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                Intent intent = new Intent(LoginActivity.this,MainPage.class);
+                startActivity(intent);
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {

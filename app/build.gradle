@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.1"
     defaultConfig {
         applicationId "com.hermes.gps"
-        minSdkVersion 11
+        minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -30,4 +30,7 @@ dependencies {
     compile 'com.android.support:design:24.2.0'
     testCompile 'junit:junit:4.12'
     compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'pl.pawelkleczkowski.customgauge:CustomGauge:1.0.3'
+    compile 'com.google.android.gms:play-services-maps:9.4.0'
+
 }

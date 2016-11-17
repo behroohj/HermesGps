@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_setting"
+    android:id="@+id/content_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -29,50 +29,159 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="match_parent" >
 
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@mipmap/ic_launcher"
+                        android:id="@+id/imageView5" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
 
                     <TextView
-                        android:text="لیست خودروها"
-                        android:gravity="center"
-                        android:layout_gravity="center"
+                        android:drawablePadding="15dp"
+                        android:layout_gravity="right|center"
+                        android:paddingTop="15dp"
+                        android:gravity="right"
+                        android:text="جنسیت: "
+                        android:textStyle="bold"
+                        android:textSize="15dp"
                         android:layout_width="match_parent"
+                        android:drawableRight="@mipmap/ic_launcher"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView3" />
+                        android:id="@+id/carName" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinner4" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
+                    android:layout_height="match_parent" >
 
                     <TextView
-                        android:text="TextView"
-                        android:layout_width="wrap_content"
+                        android:drawablePadding="15dp"
+                        android:layout_gravity="right|center"
+                        android:paddingTop="15dp"
+                        android:gravity="right"
+                        android:text="شرکت: "
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:layout_width="match_parent"
+                        android:drawableRight="@mipmap/ic_launcher"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView6" />
+                        android:id="@+id/plate" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="match_parent" >
 
-                    <Button
-                        android:text="ثبت نام هنگام خرید"
+                    <TextView
+                        android:drawablePadding="15dp"
+                        android:layout_gravity="right|center"
+                        android:paddingTop="15dp"
+                        android:gravity="right"
+                        android:text="کد ملی: "
+                        android:textStyle="bold"
+                        android:textSize="15dp"
                         android:layout_width="match_parent"
+                        android:drawableRight="@mipmap/ic_launcher"
                         android:layout_height="wrap_content"
-                        android:id="@+id/button7" />
+                        android:id="@+id/owner" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:drawablePadding="15dp"
+                        android:layout_gravity="right|center"
+                        android:paddingTop="15dp"
+                        android:gravity="right"
+                        android:text="شماره موبایل: "
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:layout_width="match_parent"
+                        android:drawableRight="@mipmap/ic_launcher"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/deviceNumber" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:drawablePadding="15dp"
+                        android:layout_gravity="right|center"
+                        android:paddingTop="15dp"
+                        android:gravity="right"
+                        android:text="تلفن ثابت: "
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:layout_width="match_parent"
+                        android:drawableRight="@mipmap/ic_launcher"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/driver" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:drawablePadding="15dp"
+                        android:layout_gravity="right|center"
+                        android:paddingTop="15dp"
+                        android:gravity="right"
+                        android:text="تاریخ ثبت نام: "
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:layout_width="match_parent"
+                        android:drawableRight="@mipmap/ic_launcher"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/driverNumber" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:drawablePadding="15dp"
+                        android:layout_gravity="right|center"
+                        android:paddingTop="15dp"
+                        android:gravity="right"
+                        android:text="تاریخ ثبت نام: "
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:layout_width="match_parent"
+                        android:drawableRight="@mipmap/ic_launcher"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/deviceType" />
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:drawablePadding="15dp"
+                        android:layout_gravity="right|center"
+                        android:paddingTop="15dp"
+                        android:gravity="right"
+                        android:text="تاریخ ثبت نام: "
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:layout_width="match_parent"
+                        android:drawableRight="@mipmap/ic_launcher"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/deviceVersion" />
                 </TableRow>
 
             </LinearLayout>

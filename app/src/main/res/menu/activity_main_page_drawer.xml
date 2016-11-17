@@ -4,32 +4,26 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="داشبورد"
-
+            android:id="@+id/navUpdate"
+            android:icon="@mipmap/ic_tag"
+            android:title="بروزرسانی" />
+        <item
+            android:id="@+id/navCarSelected"
+            android:icon="@mipmap/ic_car"
+            android:title="خودرو انتخابی" />
+        <item
+            android:id="@+id/navTurnOFF"
+            android:icon="@mipmap/ic_power"
+            android:title="خاموش شدن دستگاه"
             />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="ردیابی" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="خاموش" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/navCall"
+            android:icon="@mipmap/ic_call"
             android:title="شنود" />
-
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="تنظیمات" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="خروج" />
+        <item
+            android:id="@+id/navProfile"
+            android:icon="@mipmap/ic_launcher"
+            android:title="پروفایل" />
 
     </group>
 

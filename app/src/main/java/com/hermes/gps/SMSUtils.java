@@ -23,19 +23,19 @@ public class SMSUtils extends BroadcastReceiver {
         if (intent.getAction().equals(SENT_SMS_ACTION_NAME)) {
             switch (getResultCode()) {
                 case Activity.RESULT_OK: // Sms sent
-                    Toast.makeText(context, context.getString(R.string.app_name), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "ارسال پیام با موفقیت انجام شد", Toast.LENGTH_LONG).show();
                     break;
                 case SmsManager.RESULT_ERROR_GENERIC_FAILURE: // generic failure
-                    Toast.makeText(context, context.getString(R.string.app_name), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "generic failure", Toast.LENGTH_LONG).show();
                     break;
                 case SmsManager.RESULT_ERROR_NO_SERVICE: // No service
-                    Toast.makeText(context, context.getString(R.string.app_name), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "No service", Toast.LENGTH_LONG).show();
                     break;
                 case SmsManager.RESULT_ERROR_NULL_PDU: // null pdu
-                    Toast.makeText(context, context.getString(R.string.app_name), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "pdu", Toast.LENGTH_LONG).show();
                     break;
                 case SmsManager.RESULT_ERROR_RADIO_OFF: //Radio off
-                    Toast.makeText(context, context.getString(R.string.app_name), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Radio off", Toast.LENGTH_LONG).show();
                     break;
             }
         }
@@ -43,10 +43,10 @@ public class SMSUtils extends BroadcastReceiver {
         else if (intent.getAction().equals(DELIVERED_SMS_ACTION_NAME)) {
             switch (getResultCode()) {
                 case Activity.RESULT_OK:
-                    Toast.makeText(context, context.getString(R.string.app_name), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "DELIVERED OK", Toast.LENGTH_LONG).show();
                     break;
                 case Activity.RESULT_CANCELED:
-                    Toast.makeText(context, context.getString(R.string.app_name), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "DELIVERED Canceled", Toast.LENGTH_LONG).show();
                     break;
             }
         }
