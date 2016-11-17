@@ -52,7 +52,7 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
-                        android:drawableRight="@mipmap/ic_launcher"
+                        android:drawableRight="@mipmap/ic_automobile"
                         android:layout_height="wrap_content"
                         android:id="@+id/carName" />
                 </TableRow>
@@ -70,7 +70,7 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
-                        android:drawableRight="@mipmap/ic_launcher"
+                        android:drawableRight="@mipmap/ic_automobile"
                         android:layout_height="wrap_content"
                         android:id="@+id/plate" />
                 </TableRow>
@@ -106,7 +106,7 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
-                        android:drawableRight="@mipmap/ic_launcher"
+                        android:drawableRight="@mipmap/ic_smartphone"
                         android:layout_height="wrap_content"
                         android:id="@+id/deviceNumber" />
                 </TableRow>
@@ -124,7 +124,7 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
-                        android:drawableRight="@mipmap/ic_launcher"
+                        android:drawableRight="@mipmap/ic_smartphone"
                         android:layout_height="wrap_content"
                         android:id="@+id/driver" />
                 </TableRow>
@@ -142,7 +142,7 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
-                        android:drawableRight="@mipmap/ic_launcher"
+                        android:drawableRight="@mipmap/ic_smartphone"
                         android:layout_height="wrap_content"
                         android:id="@+id/driverNumber" />
                 </TableRow>
@@ -160,7 +160,7 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
-                        android:drawableRight="@mipmap/ic_launcher"
+                        android:drawableRight="@mipmap/ic_devices"
                         android:layout_height="wrap_content"
                         android:id="@+id/deviceType" />
                 </TableRow>
@@ -179,7 +179,7 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
-                        android:drawableRight="@mipmap/ic_launcher"
+                        android:drawableRight="@mipmap/ic_devices"
                         android:layout_height="wrap_content"
                         android:id="@+id/deviceVersion" />
                 </TableRow>
