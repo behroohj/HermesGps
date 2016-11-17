@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity{
             public void onClick(View view) {
                 if(email.getText().toString()==null || email.getText().toString().equals("") || password.getText().toString()==null || password.getText().toString().equals(""))
                 {
-                   //Snack
+                   //Snack..
                     Snackbar.make(view, "لطفا همه فیلد ها را وارد نمایید", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
                 else
