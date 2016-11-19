@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity{
                 {
                     webServiceLogin("http://gpshermes.com/rest/login?password="+password.getText().toString()+"&username="+email.getText().toString()+" ",email.getText().toString(),password.getText().toString(),"",view);
                 }
+
             }
         });
     }
