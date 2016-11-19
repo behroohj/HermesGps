@@ -600,7 +600,7 @@ public class MainPage extends AppCompatActivity
         for(int i = 0; i <lastLocationORMs.size(); i++)
         {
             lastLocation=lastLocationORMs.get(i).getE();
-            LatLng sydney = new LatLng(lastLocationORMs.get(i).getB(), lastLocationORMs.get(i).getC());
+            LatLng sydney = new LatLng(Double.parseDouble(lastLocationORMs.get(i).getB()), Double.parseDouble(lastLocationORMs.get(i).getC()));
             mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         }
