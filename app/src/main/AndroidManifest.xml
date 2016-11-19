@@ -25,6 +25,9 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.hermes.gps" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyChSsfk9isL-5s9eE4A3bbvWFI_GVrFHhs" />
 
         <activity
             android:name=".MainPage"

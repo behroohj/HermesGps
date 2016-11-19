@@ -6,8 +6,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarSelected extends AppCompatActivity {
@@ -28,6 +31,8 @@ public class CarSelected extends AppCompatActivity {
         TextView owner                  = (TextView)findViewById(R.id.owner);
         TextView plate                  = (TextView)findViewById(R.id.plate);
         TextView carName                = (TextView)findViewById(R.id.carName);
+        Spinner selcetCar               = (Spinner) findViewById(R.id.selcetCar);
+        final List<String> list         =  new ArrayList<String>();
 
         final List<ProfileORM> profileORMs = ProfileORM.listAll(ProfileORM.class);
         for(int i = 0; i <profileORMs.size(); i++)
@@ -40,8 +45,12 @@ public class CarSelected extends AppCompatActivity {
             owner.setText("مالک دستگاه:     "+profileORMs.get(i).getOwner());
             plate.setText("شماره پلاک:     "+profileORMs.get(i).getPlate());
             carName.setText("نام خوردو:     "+profileORMs.get(i).getCar_name());
+            list.add(profileORMs.get(i).getCar_name());
         }
 
+        ArrayAdapter<String> adpapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,list);
+        adpapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        selcetCar.setAdapter(adpapter);
     }
 
 }

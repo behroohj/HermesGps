@@ -20,6 +20,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -35,7 +41,7 @@ import cz.msebera.android.httpclient.Header;
 import pl.pawelkleczkowski.customgauge.CustomGauge;
 
 public class MainPage extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
     DrawerLayout drawer;
     View itm;
     private TextView text1;
@@ -44,6 +50,7 @@ public class MainPage extends AppCompatActivity
     private CustomGauge gauge2;
     static int topSpeed=0;
     static int lastLocation=0;
+    private GoogleMap mMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         G.overrideFont(getApplicationContext(), "SERIF", "Yekan.ttf");
@@ -101,6 +108,10 @@ public class MainPage extends AppCompatActivity
             text2.setText(""+topSpeed);
             gauge2.setValue(topSpeed);
         }
+
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googlemap);
+        mapFragment.getMapAsync(MainPage.this);
 //
 //        new Thread() {
 //            public void run() {
@@ -174,10 +185,10 @@ public class MainPage extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.navUpdate) {
 
-            webService("http://gpshermes.com/rest/gettbl?username=2300587416&password=09171167416");
-            webServiceRegister("http://gpshermes.com/rest/getreg?username=2300587416&password=09171167416");
-            webServiceLastLocation("http://gpshermes.com/rest/getlast?username=2300587416&password=09171167416");
-            webServiceTopSpeed("http://gpshermes.com/rest/getspeed?username=2300587416&password=09171167416");
+            webService("http://gpshermes.com/rest/gettbl?username=hh&password=hh1234");
+            webServiceRegister("http://gpshermes.com/rest/getreg?username=hh&password=hh1234");
+            webServiceLastLocation("http://gpshermes.com/rest/getlast?username=hh&password=hh1234");
+            webServiceTopSpeed("http://gpshermes.com/rest/getspeed?username=hh&password=hh1234");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -580,6 +591,20 @@ public class MainPage extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        // Add a marker in Sydney, Australia, and move the camera.
+        final List<LastLocationORM> lastLocationORMs = LastLocationORM.listAll(LastLocationORM.class);
+        for(int i = 0; i <lastLocationORMs.size(); i++)
+        {
+            lastLocation=lastLocationORMs.get(i).getE();
+            LatLng sydney = new LatLng(lastLocationORMs.get(i).getB(), lastLocationORMs.get(i).getC());
+            mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        }
+
     }
 }
 

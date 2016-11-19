@@ -13,7 +13,6 @@
     tools:context="com.hermes.gps.MainPage"
     tools:showIn="@layout/app_bar_main_page">
 
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -195,10 +194,16 @@
                 </TableRow>
 
                 <TableRow
+                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-
+                    android:layout_height="300dp"
+                    >
+                    <fragment
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/googlemap"
+                        tools:context=".MapsActivity"
+                        android:name="com.google.android.gms.maps.SupportMapFragment" />
                 </TableRow>
 
             </LinearLayout>

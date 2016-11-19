@@ -31,6 +31,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
 
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@mipmap/ic_contact"
+                        android:id="@+id/imageView5" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
                     <TextView
                         android:drawablePadding="15dp"
                         android:layout_gravity="right|center"
@@ -40,7 +52,6 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
-                        android:drawableRight="@mipmap/ic_man"
                         android:layout_height="wrap_content"
                         android:id="@+id/sex" />
                 </TableRow>
@@ -58,7 +69,6 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
-                        android:drawableRight="@mipmap/ic_industry"
                         android:layout_height="wrap_content"
                         android:id="@+id/company" />
                 </TableRow>
@@ -76,7 +86,6 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
-                        android:drawableRight="@mipmap/ic_launcher"
                         android:layout_height="wrap_content"
                         android:id="@+id/nationalCode" />
                 </TableRow>
@@ -94,7 +103,6 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
-                        android:drawableRight="@mipmap/ic_smartphone"
                         android:layout_height="wrap_content"
                         android:id="@+id/mobile" />
                 </TableRow>
@@ -112,7 +120,6 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
-                        android:drawableRight="@mipmap/ic_smartphone"
                         android:layout_height="wrap_content"
                         android:id="@+id/phone" />
                 </TableRow>
@@ -130,7 +137,6 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
-                        android:drawableRight="@mipmap/ic_clock"
                         android:layout_height="wrap_content"
                         android:id="@+id/date" />
                 </TableRow>
