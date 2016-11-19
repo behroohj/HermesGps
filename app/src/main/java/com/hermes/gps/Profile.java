@@ -35,7 +35,6 @@ public class Profile extends AppCompatActivity {
              SexString="مرد";
                 else
                    SexString="زن";
-
             sex.setText("جنسیت:     "+SexString);
             company.setText("نام شرکت:     "+registerORMs.get(i).getcompany());
             nationalCode.setText("کدملی:     "+registerORMs.get(i).getnational_code());

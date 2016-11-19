@@ -30,7 +30,7 @@
             android:value="AIzaSyChSsfk9isL-5s9eE4A3bbvWFI_GVrFHhs" />
 
         <activity
-            android:name=".MainPage"
+            android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,7 +50,7 @@
         </receiver>
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".MainPage"
             android:label="@string/title_activity_login" />
         <activity
             android:name=".Dashboard"

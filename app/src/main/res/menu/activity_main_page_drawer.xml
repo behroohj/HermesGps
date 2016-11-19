@@ -22,7 +22,7 @@
             android:title="شنود" />
         <item
             android:id="@+id/navProfile"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/ic_contact"
             android:title="پروفایل" />
 
     </group>
