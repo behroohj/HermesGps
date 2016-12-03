@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hermes.gps">
-
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
@@ -28,7 +26,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyChSsfk9isL-5s9eE4A3bbvWFI_GVrFHhs" />
-
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -83,6 +80,14 @@
         <activity
             android:name=".Profile"
             android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".CustomSelection"
+            android:label="@string/title_activity_custom_selection"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MapView"
+            android:label="@string/title_activity_map_view"
             android:theme="@style/AppTheme"></activity>
     </application>
 

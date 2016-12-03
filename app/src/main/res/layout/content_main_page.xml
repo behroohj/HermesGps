@@ -23,45 +23,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <RelativeLayout
-                android:orientation="horizontal"
-                android:layout_width="0dp"
-                android:layout_weight=".5"
-                android:layout_height="match_parent">
-
-                <pl.pawelkleczkowski.customgauge.CustomGauge
-                    android:id="@+id/gauge2"
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
-                    android:layout_centerHorizontal="true"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp"
-                    app:gaugeEndValue="200"
-                    app:gaugePointEndColor="@color/md_blue_800"
-                    app:gaugePointStartColor="@color/md_blue_300"
-                    app:gaugeStartAngle="135"
-                    app:gaugeStartValue="0"
-                    app:gaugeStrokeCap="ROUND"
-                    app:gaugeStrokeColor="@color/md_grey_400"
-                    app:gaugeStrokeWidth="10dp"
-                    app:gaugeSweepAngle="270" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/gauge2"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="48dp"
-                    android:text="0"
-                    android:textSize="30dp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
-
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="0dp"
@@ -108,6 +69,23 @@
                 </RelativeLayout>
 
             </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:text=""
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_gravity="center|right"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dateTime" />
+
+            </LinearLayout>
         </TableRow>
 
         <TableRow
@@ -117,13 +95,29 @@
             <TextView
                 android:gravity="center"
                 android:layout_centerHorizontal="true"
-                android:textSize="22dp"
+                android:textSize="14dp"
                 android:textStyle="bold"
-                android:text="آخرین سرعت"
+                android:text="بالاترین سرعت"
                 android:layout_width="0dp"
                 android:layout_weight=".5"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView12" />
+                android:id="@+id/speed" />
+
+            <TextView
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:text="شارژ باقی مانده"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:id="@+id/chargmoney" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:gravity="center"
@@ -135,34 +129,23 @@
                 android:layout_weight=".5"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView" />
-        </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-
-            <ImageView
-                android:layout_gravity="center"
+            <TextView
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:text="شارژ باقی مانده"
                 android:layout_width="0dp"
                 android:layout_weight=".5"
                 android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_tag"
-                android:id="@+id/imageView4" />
-
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="0dp"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_tag"
-                android:id="@+id/imageView3" />
+                android:id="@+id/charge" />
         </TableRow>
 
         <TableRow
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
-
             <TextView
                 android:gravity="center"
                 android:text="آدرس: شیراز خیابان شهید فقیهی کوچه ۲۰"
@@ -170,23 +153,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:id="@+id/geoCoding" />
-
         </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:text="تاریخ: ۶/۹/۱۳۹۵     ساعت: ۲۰:۱۸:۴۳"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/dateTime" />
-        </TableRow>
-
-
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -8,23 +8,43 @@
             android:icon="@mipmap/ic_tag"
             android:title="بروزرسانی" />
         <item
-            android:id="@+id/navCarSelected"
+            android:id="@+id/navCustomSelection"
             android:icon="@mipmap/ic_car"
-            android:title="خودرو انتخابی" />
+            android:title="موقعیت خودرو" />
         <item
             android:id="@+id/navTurnOFF"
             android:icon="@mipmap/ic_power"
-            android:title="خاموش شدن دستگاه"
+            android:title="خاموش نمودن خودرو"
+            />
+        <item
+            android:id="@+id/navTurnON"
+            android:icon="@mipmap/ic_power"
+            android:title="روشن نمودن خودرو"
             />
         <item
             android:id="@+id/navCall"
             android:icon="@mipmap/ic_call"
-            android:title="شنود" />
+            android:title="شنود مکالمات" />
+        <item
+            android:id="@+id/navAlerts"
+            android:icon="@mipmap/ic_call"
+            android:title="هشدارها" />
+        <item
+            android:id="@+id/navCharg"
+            android:icon="@mipmap/ic_call"
+            android:title="شارژ" />
+        <item
+            android:id="@+id/navCarSelected"
+            android:icon="@mipmap/ic_car"
+            android:title="خودرو انتخابی" />
         <item
             android:id="@+id/navProfile"
             android:icon="@mipmap/ic_contact"
-            android:title="پروفایل" />
-
+            android:title="پروفایل شخصی" />
+        <item
+            android:id="@+id/navContactUs"
+            android:icon="@mipmap/ic_contact"
+            android:title="تماس با ما" />
     </group>
 
 </menu>

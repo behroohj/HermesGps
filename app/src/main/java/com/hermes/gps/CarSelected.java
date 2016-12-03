@@ -39,6 +39,7 @@ public class CarSelected extends AppCompatActivity {
     TextView carName      ;
     String serial         ;
     public static boolean isCarSelected=false;
+    public static boolean isSerialFill =false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +77,6 @@ public class CarSelected extends AppCompatActivity {
             list.add(profileORMs.get(i).getCar_name()+"_"+profileORMs.get(i).getSerial());
         }
     }
-
     private void SpiinerSelector(final String input)
     {
             selcetCar.setOnItemSelectedListener(
@@ -91,8 +91,8 @@ public class CarSelected extends AppCompatActivity {
                             editor.putString("serial", second);
                             editor.commit();
                             UI(second);
+                            isSerialFill=true;
                         }
-
                         public void onNothingSelected(AdapterView<?> parent) {
 
                         }
@@ -106,14 +106,21 @@ public class CarSelected extends AppCompatActivity {
         for(int i = 0; i <profileORMs.size(); i++)
         {
             deviceVersion.setText("ورژن دستگاه:     "+profileORMs.get(i).getDevice_version());
+            deviceVersion.setVisibility(View.GONE);
             deviceType.setText("نوع دستگاه:     "+profileORMs.get(i).getDevice_type());
+            deviceType.setVisibility(View.GONE);
             driverNumber.setText("شماره راننده:     "+profileORMs.get(i).getDevice_version());
+            driverNumber.setVisibility(View.GONE);
             driver.setText("نام راننده:     "+profileORMs.get(i).getDriver_name());
-            deviceNumber.setText("شماره دستگاه:     "+profileORMs.get(i).getDriver_mobile_phone());
+            driverNumber.setVisibility(View.GONE);
+            deviceNumber.setText("شماره دستگاه:     "+profileORMs.get(i).getDevice_phone_number());
             owner.setText("مالک دستگاه:     "+profileORMs.get(i).getOwner());
             plate.setText("شماره پلاک:     "+profileORMs.get(i).getPlate());
             carName.setText("نام خوردو:     "+profileORMs.get(i).getCar_name());
         }
+
+        deviceVersion.setVisibility(View.GONE);
+        driverNumber.setVisibility(View.GONE);
     }
     @Override
     public void onBackPressed() {

@@ -1,12 +1,18 @@
 package com.hermes.gps;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,6 +25,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,20 +57,21 @@ public class MainPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
     DrawerLayout drawer;
     View itm;
+    private TextView speed;
+    private TextView chargmoney;
     private TextView geoCoding;
     private TextView text1;
-    private TextView text2;
+    private TextView charge;
     private TextView dateTime;
     private CustomGauge gauge1;
-    private CustomGauge gauge2;
-    static int topSpeed=0;
-    static int lastLocation=0;
+    static int topSpeed = 0;
+    static int lastLocation = 0;
     private GoogleMap mMap;
     public static final String MY_PREFS_NAME = "MyPrefsFile";
-    String serial,username,password,geo,lat,lon;
+    String serial, username, password, geo, lat, lon;
     TextView name;
     TextView plate;
-    private static boolean IsMainpageStart=false;
+    private static boolean IsMainpageStart = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         G.overrideFont(getApplicationContext(), "SERIF", "Yekan.ttf");
@@ -84,52 +92,30 @@ public class MainPage extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         NavigationView navigationV = (NavigationView) findViewById(R.id.nav_view);
-        View hView =  navigationView.getHeaderView(0);
+        View hView = navigationView.getHeaderView(0);
 
-        SharedPreferences prefs         = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        serial                          = prefs.getString("serial", null);
-        username                        = prefs.getString("username", null);
-        password                        = prefs.getString("password", null);
-        geo                             = prefs.getString("geo", null);
-
-        geoCoding = (TextView)findViewById(R.id.geoCoding);
-        gauge2 = (CustomGauge) findViewById(R.id.gauge2);
-        gauge2.setValue(120);
-        text2  = (TextView) findViewById(R.id.textView2);
-        text2.setText(""+120);
-        dateTime = (TextView)findViewById(R.id.dateTime);
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        serial = prefs.getString("serial", null);
+        username = prefs.getString("username", null);
+        password = prefs.getString("password", null);
+        geo = prefs.getString("geo", null);
+        speed = (TextView) findViewById(R.id.speed);
+        chargmoney = (TextView) findViewById(R.id.chargmoney);
+        geoCoding = (TextView) findViewById(R.id.geoCoding);
+        dateTime = (TextView) findViewById(R.id.dateTime);
         gauge1 = (CustomGauge) findViewById(R.id.gauge1);
-        text1  = (TextView) findViewById(R.id.textView1);
-        name = (TextView)hView.findViewById(R.id.name);
-        plate = (TextView)hView.findViewById(R.id.plate);
+        text1 = (TextView) findViewById(R.id.textView1);
+        name = (TextView) hView.findViewById(R.id.name);
+        plate = (TextView) hView.findViewById(R.id.plate);
+        charge = (TextView) hView.findViewById(R.id.charge);
 
         UI(serial);
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googlemap);
         mapFragment.getMapAsync(MainPage.this);
-
-        if(IsMainpageStart==false) {
+        if (IsMainpageStart == false) {
             Update(serial);
-            IsMainpageStart=true;
+            IsMainpageStart = true;
         }
-//
-//        new Thread() {
-//            public void run() {
-//
-//                    try {
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//
-//
-//                            }
-//                        });
-//                        Thread.sleep(50);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//            }
-//        }.start();
     }
     @Override
     public void onBackPressed() {
@@ -141,8 +127,8 @@ public class MainPage extends AppCompatActivity
         }
     }
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
-        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_MENU) {
 
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
@@ -172,25 +158,44 @@ public class MainPage extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        String deviceNumber = "";
+        final List<ProfileORM> profileORMs = Select.from(ProfileORM.class)
+                .where(Condition.prop("serial").eq(serial))
+                .list();
+        for (int i = 0; i < profileORMs.size(); i++) {
+            deviceNumber = profileORMs.get(i).getDevice_phone_number();
+        }
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.navProfile) {
-            Intent intent = new Intent(MainPage.this,Profile.class);
+            Intent intent = new Intent(MainPage.this, Profile.class);
             startActivity(intent);
         } else if (id == R.id.navTurnOFF) {
-            SMSUtils.sendSMS(MainPage.this, "09179168433", "خاموش شد");
+            ViewSms viewSms = new ViewSms();
+            viewSms.showDialog(MainPage.this, "آیا تمایل دارید خودرو شما خاموش شود؟", "OFF");
+        } else if (id == R.id.navTurnON) {
+            ViewSms viewSms = new ViewSms();
+            viewSms.showDialog(MainPage.this, "آیا تمایل دارید خودرو شما روشن شود؟", "ON");
         } else if (id == R.id.navCarSelected) {
-            Intent intent = new Intent(MainPage.this,CarSelected.class);
+            Intent intent = new Intent(MainPage.this, CarSelected.class);
             startActivity(intent);
         } else if (id == R.id.navUpdate) {
             Update(serial);
+        } else if (id == R.id.navCustomSelection) {
+            Intent intent = new Intent(MainPage.this, CustomSelection.class);
+            startActivity(intent);
+        } else if (id == R.id.navCall) {
+            ViewTel viewTel = new ViewTel();
+            viewTel.showDialog(MainPage.this, "آیا تمایل به شنود صدای داخل ماشین دارید؟");
+        } else if (id == R.id.navCharg) {
+            ViewUssd viewUssd = new ViewUssd();
+            viewUssd.showDialog(MainPage.this, "آیا تمایل به شارژ مستقیم سیم کارت دستگاه ردیابتان دارید؟");
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    public  void webService(String address)
-    {
+    public  void webService(String address) {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(address, new AsyncHttpResponseHandler() {
             @Override
@@ -215,8 +220,7 @@ public class MainPage extends AppCompatActivity
             }
         });
     }
-    public  void webServiceRegister(String address)
-    {
+    public  void webServiceRegister(String address) {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(address, new AsyncHttpResponseHandler() {
             @Override
@@ -240,8 +244,7 @@ public class MainPage extends AppCompatActivity
             }
         });
     }
-    public  void webServiceLastLocation(String address)
-    {
+    public  void webServiceLastLocation(String address) {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(address, new AsyncHttpResponseHandler() {
             @Override
@@ -265,8 +268,7 @@ public class MainPage extends AppCompatActivity
             }
         });
     }
-    public  void webServiceTopSpeed(String address)
-    {
+    public  void webServiceTopSpeed(String address) {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(address, new AsyncHttpResponseHandler() {
             @Override
@@ -279,43 +281,6 @@ public class MainPage extends AppCompatActivity
                 String value = new String(response);
                 System.out.println("TopSpeed: "+value);
                 JsonParseTopSpeed(value.toString());
-            }
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-            }
-            @Override
-            public void onRetry(int retryNo) {
-                // called when request is retried
-            }
-        });
-    }
-    public  void webServiceGeoCoding(String address)
-    {
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.get(address, new AsyncHttpResponseHandler() {
-            @Override
-            public void onStart() {
-                // called before request is started
-            }
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                // called when response HTTP status is "200 OK"
-                String value = new String(response);
-
-                try {
-                    JSONObject json= (JSONObject) new JSONTokener(value.toString()).nextValue();
-                    String msg  = (String) json.get("msg");
-                    System.out.println("msg"+msg);
-                    SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-                    editor.putString("geo", msg);
-                    editor.commit();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
@@ -615,9 +580,15 @@ public class MainPage extends AppCompatActivity
             e.printStackTrace();
         }
 
-        Intent intent =new Intent (MainPage.this,MainPage.class);
-        startActivity(intent);
-        finish();
+        if(CarSelected.isSerialFill==false && serial==null) {
+            Intent intent = new Intent(MainPage.this,CarSelected.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent =new Intent (MainPage.this,MainPage.class);
+            startActivity(intent);
+            finish();
+        }
 
     }
     @Override
@@ -629,58 +600,58 @@ public class MainPage extends AppCompatActivity
         // Add a marker in Sydney, Australia, and move the camera.
         final List<LastLocationORM> lastLocationORMs = Select.from(LastLocationORM.class)
                 .where(Condition.prop("A").eq(serial))
+                .orderBy("idapp desc")
+                .limit("1")
                 .list();
         for(int i = 0; i <lastLocationORMs.size(); i++)
         {
+            chargmoney.setText(""+lastLocationORMs.get(i).getF() +" ریال");
             lastLocation=lastLocationORMs.get(i).getE();
             LatLng sydney = new LatLng(Double.parseDouble(lastLocationORMs.get(i).getB()), Double.parseDouble(lastLocationORMs.get(i).getC()));
-            mMap.addMarker(new MarkerOptions().position(sydney).title("نام ماشین"));
+            mMap.addMarker(new MarkerOptions().position(sydney).title(""+lastLocationORMs.get(i).getE()+" KM/H"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-            mMap.animateCamera( CameraUpdateFactory.zoomTo( 12.0f ) );
+            mMap.animateCamera( CameraUpdateFactory.zoomTo( 17.0f ) );
         }
 
     }
-    private void UI(String input)
-    {
-        geoCoding.setText(geo);
+    private void UI(String input) {
+//        geoCoding.setText(geo);
         final List<ProfileORM> profileORMs = Select.from(ProfileORM.class)
                 .where(Condition.prop("serial").eq(serial))
                 .list();
         for(int i = 0; i <profileORMs.size(); i++)
         {
             name.setText(""+profileORMs.get(i).getOwner()+" "+profileORMs.get(i).getCar_name());
-            plate.setText(profileORMs.get(i).getDevice_phone_number());
+            plate.setText(profileORMs.get(i).getDriver_mobile_phone());
         }
 
         final List<TopSpeedORM> topSpeedORMs = Select.from(TopSpeedORM.class)
                 .where(Condition.prop("A").eq(input))
+                .orderBy("idapp desc")
+                .limit("1")
                 .list();
         for(int i = 0; i <topSpeedORMs.size(); i++)
         {
             topSpeed=topSpeedORMs.get(i).getE();
             text1.setText(""+topSpeed);
+            speed.setText(""+topSpeed+" KM/H");
             gauge1.setValue(topSpeed);
+            dateTime.setText("تاریخ:    "+topSpeedORMs.get(i).getDate()+"\n"+"ساعت:    "+topSpeedORMs.get(i).getTime());
         }
 
-        final List<LastLocationORM> lastLocationORMs = Select.from(LastLocationORM.class)
-                .where(Condition.prop("A").eq(input))
-                .list();
-        for(int i = 0; i <lastLocationORMs.size(); i++)
-        {
-            lastLocation=lastLocationORMs.get(i).getE();
-            lat=lastLocationORMs.get(i).getB();
-            lon=lastLocationORMs.get(i).getC();
-            text2.setText(""+topSpeed);
-            gauge2.setValue(topSpeed);
-            dateTime.setText("تاریخ:    "+lastLocationORMs.get(i).getDate()+"     "+"ساعت:    "+lastLocationORMs.get(i).getTime());
-        }
+//        final List<LastLocationORM> lastLocationORMs = Select.from(LastLocationORM.class)
+//                .where(Condition.prop("A").eq(input))
+//                .list();
+//        for(int i = 0; i <lastLocationORMs.size(); i++)
+//        {
+//            lat=lastLocationORMs.get(i).getB();
+//            lon=lastLocationORMs.get(i).getC();
+//        }
     }
-    private void Update(String input)
-    {
+    private void Update(String input) {
         webServiceLastLocation("http://gpshermes.com/rest/getlast?username="+username+"&password="+password+" ");
         webService("http://gpshermes.com/rest/gettbl?username="+username+"&password="+password+" ");
         webServiceRegister("http://gpshermes.com/rest/getreg?username="+username+"&password="+password+" ");
-        webServiceGeoCoding("http://gpshermes.com/rest/getgeo?username="+username+"&password="+password+"&lat="+lat+"&lon="+lon+" ");
         webServiceTopSpeed("http://gpshermes.com/rest/getspeed?username="+username+"&password="+password+" ");
     }
     @Override
@@ -710,5 +681,114 @@ public class MainPage extends AppCompatActivity
         super.onDestroy();
         Log.d("event", "The onDestroy() event");
     }
+    public class ViewTel {
+        public void showDialog(Activity activity, String msg){
+            String deviceNumber="";
+            final List<ProfileORM> profileORMs = Select.from(ProfileORM.class)
+                    .where(Condition.prop("serial").eq(serial))
+                    .list();
+            for(int i = 0; i <profileORMs.size(); i++)
+            {
+                deviceNumber=profileORMs.get(i).getDevice_phone_number();
+            }
+            final Dialog dialog = new Dialog(activity);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.alert);
+            TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
+            text.setText(msg);
+            Button btn_Ok     = (Button) dialog.findViewById(R.id.btn_Ok);
+            Button btn_Cancel = (Button) dialog.findViewById(R.id.btn_Cancel);
+            final String finalDeviceNumber = deviceNumber;
+            btn_Ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", finalDeviceNumber, null)));
+                    dialog.dismiss();
+                }
+            });
+            btn_Cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
+    }
+    public class ViewSms {
+        public void showDialog(Activity activity, String msg,final String instructure){
+
+            String deviceNumber="";
+            final List<ProfileORM> profileORMs = Select.from(ProfileORM.class)
+                    .where(Condition.prop("serial").eq(serial))
+                    .list();
+            for(int i = 0; i <profileORMs.size(); i++)
+            {
+                deviceNumber=profileORMs.get(i).getDevice_phone_number();
+            }
+            final Dialog dialog = new Dialog(activity);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.alert);
+            TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
+            text.setText(msg);
+            Button btn_Ok     = (Button) dialog.findViewById(R.id.btn_Ok);
+            Button btn_Cancel = (Button) dialog.findViewById(R.id.btn_Cancel);
+            final String finalDeviceNumber = deviceNumber;
+            btn_Ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SMSUtils.sendSMS(MainPage.this, finalDeviceNumber, instructure);
+                    dialog.dismiss();
+                }
+            });
+            btn_Cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+
+        }
+    }
+    public class ViewUssd {
+        public void showDialog(Activity activity, String msg){
+            String deviceNumber="";
+            final List<ProfileORM> profileORMs = Select.from(ProfileORM.class)
+                    .where(Condition.prop("serial").eq(serial))
+                    .list();
+            for(int i = 0; i <profileORMs.size(); i++)
+            {
+                deviceNumber=profileORMs.get(i).getDevice_phone_number();
+            }
+            final Dialog dialog = new Dialog(activity);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.alert);
+            TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
+            text.setText(msg);
+            Button btn_Ok     = (Button) dialog.findViewById(R.id.btn_Ok);
+            Button btn_Cancel = (Button) dialog.findViewById(R.id.btn_Cancel);
+            String finalDeviceNumber = deviceNumber;
+            final String ussd = "*780*2" + Uri.encode("#");
+            btn_Ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", ussd, null)));
+                    dialog.dismiss();
+                }
+            });
+            btn_Cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
+    }
 }
+
 
